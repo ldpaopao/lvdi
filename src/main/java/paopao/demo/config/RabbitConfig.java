@@ -1,17 +1,28 @@
 //package paopao.demo.config;
 //
-//import org.springframework.amqp.core.Queue;
-//import org.springframework.amqp.core.QueueBuilder;
+//import org.springframework.amqp.core.*;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //
 //@Configuration
 //public class RabbitConfig {
 //
+//    public static final String LOTTERY_QUEUE = "lottery.queue";
+//    public static final String LOTTERY_EXCHANGE = "lottery.exchange";
+//    public static final String LOTTERY_ROUTING_KEY = "lottery.routing.key";
+//
 //    @Bean
 //    public Queue lotteryQueue() {
-//        return QueueBuilder.durable("lottery.queue") // 名称与消费者一致
-//                .autoDelete() // 若使用 auto-delete，请明确配置
-//                .build();
+//        return new Queue(LOTTERY_QUEUE, true);
+//    }
+//
+//    @Bean
+//    public DirectExchange lotteryExchange() {
+//        return new DirectExchange(LOTTERY_EXCHANGE);
+//    }
+//
+//    @Bean
+//    public Binding binding(Queue queue, DirectExchange exchange) {
+//        return BindingBuilder.bind(queue).to(exchange).with(LOTTERY_ROUTING_KEY);
 //    }
 //}

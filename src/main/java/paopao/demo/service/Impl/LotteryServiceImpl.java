@@ -1,6 +1,5 @@
 package paopao.demo.service.Impl;
 
-//import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import paopao.demo.entity.LotteryResult;
@@ -14,10 +13,13 @@ import java.util.Random;
 
 @Service
 public class LotteryServiceImpl implements LotteryService {
-    @Autowired private PrizeMapper prizeMapper;
+    @Autowired
+    private PrizeMapper prizeMapper;
+
     @Autowired
     private UserPrizeMapper userPrizeMapper;
-//    @Autowired private RabbitTemplate rabbitTemplate;
+
+    // @Autowired private RabbitTemplate rabbitTemplate;
 
     @Override
     public Prize draw(int userId) {
@@ -25,7 +27,8 @@ public class LotteryServiceImpl implements LotteryService {
 
         // 随机数生成，如果是0到0.5则返回谢谢参与
         if (new Random().nextDouble() < 0.5) {
-            return new Prize(0, "谢谢参与", 0);
+            // 使用全参构造函数创建"谢谢参与"奖品对象
+            return new Prize(0, "谢谢参与", 999999);
         }
 
         if (availablePrizes.isEmpty()) return null;
@@ -34,7 +37,7 @@ public class LotteryServiceImpl implements LotteryService {
         if (prize.getQuantity() > 0) {
             prizeMapper.decrementPrize(prize.getId());
             userPrizeMapper.insert(userId, prize.getId());
-//            rabbitTemplate.convertAndSend("lottery.queue", new LotteryResult(userId, prize.getName()));
+            // rabbitTemplate.convertAndSend("lottery.queue", new LotteryResult(userId, prize.getName()));
             return prize;
         }
         return null;

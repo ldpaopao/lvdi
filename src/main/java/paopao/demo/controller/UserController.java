@@ -46,6 +46,7 @@ public class UserController {
 
           Map<String,Object> userInfo = new HashMap<>();
           userInfo.put("id", dbUser.getId());
+          userInfo.put("name", dbUser.getUsername());
           String token = JwtUtils.generateToken(userInfo);
 
           System.out.println(token);

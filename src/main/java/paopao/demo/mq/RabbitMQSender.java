@@ -6,11 +6,11 @@
 //import paopao.demo.entity.LotteryRecord;
 //
 //@Component
-//       public class RabbitMQSender {
-//           @Autowired
+//public class RabbitMQSender {
+//    @Autowired
 //    private RabbitTemplate rabbitTemplate;
 //
-//                   public void send(LotteryRecord record) {
-//               rabbitTemplate.convertAndSend("lottery.result.exchange", "lottery.result.key", record);
-//           }
-//       }
+//    public void send(LotteryRecord record) {
+//        rabbitTemplate.convertAndSend("lottery.result.exchange", "lottery.result.key", record);
+//    }
+//}

@@ -15,13 +15,6 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
 
-#  rabbitmq:
-#    host: localhost
-#    port: 5672
-#    username: guest
-#    password: guest
-#    virtual-host: /
-
 mybatis:
   type-aliases-package: com.example.demo.entity
   mapper-locations: classpath:mapper/*.xml
@@ -30,7 +23,3 @@ logging:
   level:
     root: info
     com.example.demo: debug
-
-# 自定义配置（可选）
-lottery:
-  queue-name: lottery.queue
